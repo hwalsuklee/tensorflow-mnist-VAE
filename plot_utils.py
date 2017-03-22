@@ -77,12 +77,12 @@ class Plot_Manifold_Learning_Result():
         # z = z.reshape([-1, 2])
 
         # borrowed from https://github.com/fastforwardlabs/vae-tf/blob/master/plot.py
-        #z = np.rollaxis(np.mgrid[self.z_range:-self.z_range:self.n_img_y * 1j, self.z_range:-self.z_range:self.n_img_x * 1j], 0, 3)
-        z1 = np.rollaxis(np.mgrid[1:-1:self.n_img_y * 1j, 1:-1:self.n_img_x * 1j], 0, 3)
-        z = z1**2
-        z[z1<0] *= -1
-
-        z = z*self.z_range
+        z = np.rollaxis(np.mgrid[self.z_range:-self.z_range:self.n_img_y * 1j, self.z_range:-self.z_range:self.n_img_x * 1j], 0, 3)
+        # z1 = np.rollaxis(np.mgrid[1:-1:self.n_img_y * 1j, 1:-1:self.n_img_x * 1j], 0, 3)
+        # z = z1**2
+        # z[z1<0] *= -1
+        #
+        # z = z*self.z_range
 
         self.z = z.reshape([-1, 2])
 
@@ -110,8 +110,25 @@ class Plot_Manifold_Learning_Result():
 
     # borrowed from https://github.com/ykwon0407/variational_autoencoder/blob/master/variational_bayes.ipynb
     def save_scattered_image(self, z, id, name='scattered_image.jpg'):
+        N = 10
         plt.figure(figsize=(8, 6))
-        plt.scatter(z[:, 0], z[:, 1], c=np.argmax(id, 1))
-        plt.colorbar()
+        plt.scatter(z[:, 0], z[:, 1], c=np.argmax(id, 1), marker='o', edgecolor='none', cmap=discrete_cmap(N, 'jet'))
+        plt.colorbar(ticks=range(N))
+        axes = plt.gca()
+        axes.set_xlim([-self.z_range-2, self.z_range+2])
+        axes.set_ylim([-self.z_range-2, self.z_range+2])
         plt.grid(True)
         plt.savefig(self.DIR + "/" + name)
+
+# borrowed from https://gist.github.com/jakevdp/91077b0cae40f8f8244a
+def discrete_cmap(N, base_cmap=None):
+    """Create an N-bin discrete colormap from the specified input map"""
+
+    # Note that if base_cmap is a string or None, you can simply do
+    #    return plt.cm.get_cmap(base_cmap, N)
+    # The following works for string, None, or a colormap instance:
+
+    base = plt.cm.get_cmap(base_cmap)
+    color_list = base(np.linspace(0, 1, N))
+    cmap_name = base.name + str(N)
+    return base.from_list(cmap_name, color_list, N)
