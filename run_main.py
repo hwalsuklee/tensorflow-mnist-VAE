@@ -25,7 +25,7 @@ def parse_args():
 
     parser.add_argument('--network_type', type=str, default='CNN', choices=['CNN','MLP'], help='Network type for VAE. choose between CNN and MLP', required = True)
 
-    parser.add_argument('--n_hidden', type=int, default=500, help='number of hidden units in MLP')
+    parser.add_argument('--n_hidden', type=int, default=500, help='Number of hidden units in MLP')
 
     parser.add_argument('--learn_rate', type=float, default=1e-3, help='Learning rate for Adam optimizer')
 
