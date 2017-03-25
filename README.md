@@ -5,7 +5,7 @@ An implementation of variational auto-encoder (VAE) for MNIST descripbed in the 
 ## Results
 ### Reproduce
 Well trained VAE must be able to reproduce input image.  
-Figure 5 in the paper shows reproduce performance of leared generative models for different dimensionalities.  
+Figure 5 in the paper shows reproduce performance of learned generative models for different dimensionalities.  
 The following results can be reproduced with command:  
 ```
 python run_main.py --dim_z <each value> --num_epochs 60
