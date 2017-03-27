@@ -101,4 +101,4 @@ The implementation is based on the projects:
 [4] https://github.com/altosaar/vae
 
 ## Acknowledgements
-This implementation has been tested with Tensorflow r0.12 on Windows 10 and Ubuntu 14.04.
+This implementation has been tested with Tensorflow r0.12 on Windows 10.
