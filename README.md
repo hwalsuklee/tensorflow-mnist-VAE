@@ -33,7 +33,7 @@ python run_main.py --dim_z <each value> --num_epochs 60
 When training, salt & pepper noise is added to input image, so that VAE can reduce noise and restore original input image.  
 The following results can be reproduced with command:  
 ```
-python run_main.py --dim_z 20 --add_noize True --num_epochs 40
+python run_main.py --dim_z 20 --add_noise True --num_epochs 40
 ```
 <table align='center'>
 <tr align='center'>
