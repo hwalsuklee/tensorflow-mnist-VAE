@@ -66,6 +66,11 @@ python run_main.py --dim_z 2 --num_epochs 60 --PMLR True
 </table>
 
 ## Usage
+### Prerequisites
+1. Tensorflow
+2. Python packages : numpy, scipy, PIL(or Pillow), matplotlib
+
+### Command
 ```
 python run_main.py --dim_z <latent vector dimension>
 ```
